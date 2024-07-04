@@ -4,4 +4,5 @@ from . import views
 urlpatterns = [
     # massage/ => 留言列表
     path('', views.MessageList.as_view(), name='msg_list'),
+    path('<int:pk>/', views.MessageRead.as_view(), name="msg_read"),
 ]
