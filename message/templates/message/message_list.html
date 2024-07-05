@@ -1,17 +1,15 @@
-<!DOCTYPE html>
-<html lang="zh-hant">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>留言板</title>
-</head>
-<body>
-  <h1>留言列表</h1>
-  <ul>
-    {% for msg in message_list %}
-    <li>{{ msg.created }} {{ msg.subject }} </li> 
-    {% endfor %}
-  </ul>
-  
-</body>
-</html>
+{% extends 'base.html' %}
+   
+{% block content %}
+<h1>留言列表</h1>
+<a href="{% url 'msg_create' %}">新增留言</a>
+    <ul>
+        {% for  msg in message_list %}
+        <li>{{msg.created}}
+        <a href="{% url 'msg_read' msg.id %}">{{msg.subject}}{{ msg.user }}</a> </li> 
+        {% if user.is_authenticated %}
+                <a href="{% url 'msg_delete' msg.id %}">刪除</a>{% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+    {% endblock %}

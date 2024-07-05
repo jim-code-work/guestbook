@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>留言板{% block title %}{% endblock %}</title>
+</head>
+<body>
+    {% if  user.is_authenticated %}
+        歡迎 {{ user.username }} !!
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="登出">
+        </form>
+    {% else %}
+        <a href="{% url 'login' %}">登入</a> 
+        {%endif%}
+
+    <a href="{% url 'msg_list' %}">留言列表</a>
+    {% block content %}{% endblock %}
+</body>
+</html>
