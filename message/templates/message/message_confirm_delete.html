@@ -1,10 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1>刪除留言</h1>
-  <form action="" method="post">
-    {%csrf_token%}
-    <input type="submit" value="是的,我要刪除" >
-  </form>
-    
+<h1>刪除留言</h1>
+確定要刪除{{ message }} 這則留言嗎
+<div>留言者: {{ mesage.user }}</div>
+<div>留言主題: {{ mesage.subject }}</div>
+<div>收件者: {{ mesage.receipt }}</div>
+<div>留言內容: {{ mesage.content| linebreaks }}</div>
+<form action="" method="post">
+    {% csrf_token %}
+    <input type="submit" value="是的，我要刪除">
+</form>
 {% endblock %}
